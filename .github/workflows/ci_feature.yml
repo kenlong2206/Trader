@@ -82,10 +82,10 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: exchange_data_test.txt
-        path: Exchange/data
+        path: Trader/data
 
     - name: Upload log file
       uses: actions/upload-artifact@v4
       with:
         name: exchange_log_test.txt
-        path: Exchange/logs
+        path: Trader/logs
