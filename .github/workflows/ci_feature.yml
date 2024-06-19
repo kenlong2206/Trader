@@ -5,12 +5,14 @@ run-name: ${{ github.actor }}
 on:
   push:
     branches:
+      - master
       - develop
       - 'feature-*'
   pull_request:
     paths:
       - 'Trader/**'
     branches:
+      - master
       - develop
       - 'release-*'
 
