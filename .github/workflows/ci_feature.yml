@@ -1,4 +1,4 @@
-name: Trader CI Pipeline for feature branch
+name: Trader CI Pipeline for feature and develop branches
 
 run-name: ${{ github.actor }}
 
