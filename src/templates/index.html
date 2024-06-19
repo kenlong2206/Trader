@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trades</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="trade-log-tab" data-toggle="tab" href="#trade-log" role="tab" aria-controls="trade-log" aria-selected="true">Trade Log</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="add-trade-tab" data-toggle="tab" href="#add-trade" role="tab" aria-controls="add-trade" aria-selected="false">Add Trade</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="portfolio-tab" data-toggle="tab" href="#portfolio" role="tab" aria-controls="portfolio" aria-selected="false">Portfolio Summary</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="analytics-tab" data-toggle="tab" href="#analytics" role="tab" aria-controls="analytics" aria-selected="false">Analytics</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="trade-log" role="tabpanel" aria-labelledby="trade-log-tab">
+                <h2>Trade Log</h2>
+                <div id="tradeLogContent">
+                    <!-- Trade Log content will go here  -->
+                </div>
+            </div>
+            <div class="tab-pane fade" id="add-trade" role="tabpanel" aria-labelledby="add-trade-tab">
+                <h2>Add Trade</h2>
+                <div id="tradeFormContent">
+                    <!-- Trade form content will go here -->
+                </div>
+            </div>
+            <div class="tab-pane fade" id="portfolio" role="tabpanel" aria-labelledby="portfolio-tab">
+                <h2>Portfolio Summary</h2>
+                <div id="portfolioContent">
+                    <!-- Portfolio Summary content will go here -->
+                </div>
+            </div>
+            <div class="tab-pane fade" id="analytics" role="tabpanel" aria-labelledby="analytics-tab">
+                <h2>Analytics</h2>
+                <div id="analyticsContent">
+                    <!-- Analytics content will go here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-financial/dist/chartjs-chart-financial.min.js"></script>
+    <script src="/static/js/index.js"></script>
+</body>
+</html>
