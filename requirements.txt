@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+jinja2
+httpx
+aiohttp
+python-binance
+pedantic
+datetime
+dotenv
+typing
+matplotlib
+mplfinance
+chartjs-chart-financial
