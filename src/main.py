@@ -7,9 +7,9 @@ from binance.client import Client
 from typing import Optional, List
 from pydantic import BaseModel, create_model
 from datetime import datetime
-from Trader.src.data_access import create_trade, read_trades, update_trade, delete_trade
-from Trader.models.trade import Trade
-from Trader.src.logging_config import setup_logging
+from data_access import create_trade, read_trades, update_trade, delete_trade
+from ..models.trade import Trade
+from logging_config import setup_logging
 
 # Set up logging
 logger = setup_logging()
