@@ -7,6 +7,8 @@ source =
 omit =
     */Trader/__init__.py
     */Trader/tests/*
+    */venv/*
+    */tests/*
 
 [report]
 show_missing = true

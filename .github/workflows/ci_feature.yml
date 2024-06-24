@@ -50,7 +50,7 @@ jobs:
            mkdir -p ./logs
 
     - name: Run Pytest tests with coverage
-      run:  python -m pytest --cov=src --cov-report=xml:reports/coverage.xml --cov-report=html:reports/htmlcov --junitxml=reports/xunit-result.xml
+      run:
 
     # placeholder to add postman tests
 
@@ -70,9 +70,9 @@ jobs:
           -Dsonar.host.url=https://sonarcloud.io 
           -Dsonar.python.version=3
           -Dsonar.branch.name=${{ github.ref_name }}
-          -Dsonar.sources=src/
-          -Dsonar.python.xunit.reportPath=reports/xunit-result.xml
-          -Dsonar.python.coverage.reportPaths=reports/coverage.xml
+          -Dsonar.sources=Trader/src/
+          -Dsonar.python.xunit.reportPath=Trader/reports/xunit-result.xml
+          -Dsonar.python.coverage.reportPaths=Trader/reports/coverage.xml
 
     - name: Upload test results
       uses: actions/upload-artifact@v4

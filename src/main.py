@@ -23,8 +23,8 @@ templates = Jinja2Templates(directory=TEMPLATES_DIR)
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
 # Initialize Binance client
-api_key = "YOUR_BINANCE_API_KEY"
-api_secret = "YOUR_BINANCE_API_SECRET"
+api_key = "WG7pauMif3ruHQyloNPogdrr9hsHe6zfR3nwe9eDCcxKTqk6iFJrK8nqGBKJ6aJb"
+api_secret = "hPXINxKyI9aLavZ5OguOqKVvOixntwmkr2vfbFHWqAO2kH4YAnZakqLlUjSbX7e0"
 binance_client = Client(api_key, api_secret)
 
 
