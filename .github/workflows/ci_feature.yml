@@ -50,7 +50,7 @@ jobs:
            mkdir -p ./logs
 
     - name: Run Pytest tests with coverage
-      run:
+      run: python -m pytest --cov=Trader/src --cov-report=xml:Trader/reports/coverage.xml --cov-report=html:Trader/reports/htmlcov --junitxml=Trader/reports/xunit-result.xml
 
     # placeholder to add postman tests
 
