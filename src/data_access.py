@@ -2,8 +2,8 @@ import os
 import uuid
 import json
 from datetime import datetime
-from Trader.models.trade import Trade
-from Trader.src.logging_config import setup_logging
+from ..models.trade import Trade
+from logging_config import setup_logging
 
 # Set up logging
 logger = setup_logging()
