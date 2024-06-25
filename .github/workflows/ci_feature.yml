@@ -24,70 +24,69 @@ jobs:
         python-version: ['3.9']
     runs-on: ${{ matrix.os }}
     env:
-      IS_TEST: true #set an environment variable so all tests write data to a 'test only' data file to avoid corrupting the 'real' data file
+      IS_TEST: true
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0 #fetch all branches
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: ${{ matrix.python-version }}
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-      env:
-        PYTHONPATH: ./Trader/src
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+        env:
+          PYTHONPATH: ./src  # Adjust if necessary based on your project structure
 
-    - name: Create directories
-      run: mkdir -p ./reports
-           mkdir -p ./data
-           mkdir -p ./logs
+      - name: Create directories
+        run: |
+          mkdir -p ./reports
+          mkdir -p ./data
+          mkdir -p ./logs
 
-    - name: Run Pytest tests with coverage
-      run: python -m pytest --cov=./src --cov-report=xml:./reports/coverage.xml --cov-report=html:./reports/htmlcov --junitxml=./reports/xunit-result.xml
+      - name: Run Pytest tests with coverage
+        run: python -m pytest --cov=./src --cov-report=xml:./reports/coverage.xml --cov-report=html:./reports/htmlcov --junitxml=./reports/xunit-result.xml ./tests/unit/
 
-    # placeholder to add postman tests
+      - name: Lint with Ruff
+        run: ruff --output-format=github .
+        continue-on-error: true
 
-    - name: Lint with Ruff
-      run: ruff --output-format=github .
-      continue-on-error: true
+      - name: SonarQube Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          PYTHONPATH: ./src
+        with:
+          projectBaseDir: .  # Adjust if your project is in a subdirectory
+          args: >
+            -Dsonar.host.url=https://sonarcloud.io 
+            -Dsonar.python.version=3
+            -Dsonar.branch.name=${{ github.ref_name }}
+            -Dsonar.sources=./src/
+            -Dsonar.python.xunit.reportPath=./reports/xunit-result.xml
+            -Dsonar.python.coverage.reportPaths=./reports/coverage.xml
 
-    - name: SonarQube Scan
-      uses: SonarSource/sonarcloud-github-action@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        PYTHONPATH: Trader
-      with:
-        projectBaseDir: . # Adjust this if your project is in a subdirectory
-        args: >
-          -Dsonar.host.url=https://sonarcloud.io 
-          -Dsonar.python.version=3
-          -Dsonar.branch.name=${{ github.ref_name }}
-          -Dsonar.sources=./src/
-          -Dsonar.python.xunit.reportPath=./reports/xunit-result.xml
-          -Dsonar.python.coverage.reportPaths=./reports/coverage.xml
+      - name: Upload test results
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-results
+          path: ./reports
 
-    - name: Upload test results
-      uses: actions/upload-artifact@v4
-      with:
-        name: test-results
-        path: ./reports
+      - name: Upload data
+        uses: actions/upload-artifact@v2
+        with:
+          name: trader_data_test.txt
+          path: ./data
 
-    - name: Upload data
-      uses: actions/upload-artifact@v4
-      with:
-        name: trader_data_test.txt
-        path: ./data
-
-    - name: Upload log file
-      uses: actions/upload-artifact@v4
-      with:
-        name: exchange_log_test.txt
-        path: Trader/logs
+      - name: Upload log file
+        uses: actions/upload-artifact@v2
+        with:
+          name: exchange_log_test.txt
+          path: ./logs
