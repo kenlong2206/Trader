@@ -62,7 +62,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          PYTHONPATH: ./src
+          PYTHONPATH: ./Trader/src
         with:
           projectBaseDir: .  # Adjust if your project is in a subdirectory
           args: >
