@@ -2,7 +2,7 @@ import os
 import uuid
 import json
 from datetime import datetime
-from ..models.trade import Trade
+from ..common.trade import Trade
 from logging_config import setup_logging
 
 # Set up logging

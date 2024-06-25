@@ -5,7 +5,7 @@ from fastapi.testclient import TestClient
 from main import app, binance_client
 from unittest.mock import MagicMock, patch
 from datetime import datetime
-from Trader.models.trade import Trade
+from Trader.common.trade import Trade
 from bs4 import BeautifulSoup
 
 # Add the src directory to sys.path

@@ -8,12 +8,13 @@ from typing import Optional, List
 from pydantic import BaseModel, create_model
 from datetime import datetime
 from data_access import create_trade, read_trades, update_trade, delete_trade
-from ..models.trade import Trade
+from ..common.trade import Trade
 from logging_config import setup_logging
 
 # Set up logging
 logger = setup_logging()
 
+# set BASE_DIR to the directory of 'this' file
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
 STATIC_DIR = os.path.join(BASE_DIR, "static")

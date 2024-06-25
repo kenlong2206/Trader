@@ -50,7 +50,7 @@ jobs:
            mkdir -p ./logs
 
     - name: Run Pytest tests with coverage
-      run: python -m pytest --cov=Trader/src --cov-report=xml:Trader/reports/coverage.xml --cov-report=html:Trader/reports/htmlcov --junitxml=Trader/reports/xunit-result.xml
+      run: python -m pytest --cov=./src --cov-report=xml:./reports/coverage.xml --cov-report=html:./reports/htmlcov --junitxml=./reports/xunit-result.xml
 
     # placeholder to add postman tests
 
@@ -70,21 +70,21 @@ jobs:
           -Dsonar.host.url=https://sonarcloud.io 
           -Dsonar.python.version=3
           -Dsonar.branch.name=${{ github.ref_name }}
-          -Dsonar.sources=Trader/src/
-          -Dsonar.python.xunit.reportPath=Trader/reports/xunit-result.xml
-          -Dsonar.python.coverage.reportPaths=Trader/reports/coverage.xml
+          -Dsonar.sources=./src/
+          -Dsonar.python.xunit.reportPath=./reports/xunit-result.xml
+          -Dsonar.python.coverage.reportPaths=./reports/coverage.xml
 
     - name: Upload test results
       uses: actions/upload-artifact@v4
       with:
         name: test-results
-        path: Trader/reports
+        path: ./reports
 
     - name: Upload data
       uses: actions/upload-artifact@v4
       with:
-        name: exchange_data_test.txt
-        path: Trader/data
+        name: trader_data_test.txt
+        path: ./data
 
     - name: Upload log file
       uses: actions/upload-artifact@v4
