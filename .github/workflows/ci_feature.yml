@@ -51,7 +51,7 @@ jobs:
           mkdir -p ./logs
 
       - name: Run Pytest tests with coverage
-        run: python -m pytest --cov=./src --cov-report=xml:./reports/coverage.xml --cov-report=html:./reports/htmlcov --junitxml=./reports/xunit-result.xml ./tests/unit/
+        run: python -m pytest --cov=./Trader/src --cov-report=xml:./reports/coverage.xml --cov-report=html:./reports/htmlcov --junitxml=./reports/xunit-result.xml ./Trader/tests/unit/
 
       - name: Lint with Ruff
         run: ruff --output-format=github .

@@ -2,7 +2,7 @@ import sys
 import os
 import pytest
 from fastapi.testclient import TestClient
-from main import app, binance_client
+from Trader.src.main import app, binance_client
 from unittest.mock import MagicMock, patch
 from datetime import datetime
 from Trader.common.trade import Trade
